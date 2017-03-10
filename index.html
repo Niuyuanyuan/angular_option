@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script src="https://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+	<title>angular的服务</title>
+
+	<style>
+		input.ng-invalid {
+		    background-color: lightblue;
+		}
+	</style>
+
+</head>
+<body ng-app="myApp">
+
+
+    <!-- ng-options 指令，选择的值是一个数组对象 -->
+    <div  ng-controller="myCtrl">
+	    <h1>1、</h1>
+		<h2>数组为对象:</h2>
+		<p>选择网站：</p>
+		<select ng-model="selectedName" ng-options="x.site for x in sites"></select>
+		<h3>你选择的是：{{selectedName.site}}</h3>
+		<p>网址为：{{selectedName.url}}</p>
+		<p>该实例演示了使用 ng-options  指令来创建下拉列表，选中的值是一个对象。</p>
+		<br><br>
+	</div>
+
+
+    <!-- ng-options 指令，选择的值是一个数据源为对象 -->
+    <div  ng-controller="myOptionsubject">
+	    <h1>2、</h1>
+		<h2>数据源为对象:</h2>
+		<p>选择网站：</p>
+		<select ng-model="selectedSite" ng-options="x for (x,y) in sites"></select>
+		<h3>你选择的是：{{selectedSite}}</h3>
+		<p>该实例演示了使用对象作为创建下拉列表。</p>
+		<br><br>
+	</div>
+
+
+
+    <!-- ng-options 指令，选择的值是一个数据源为对象 -->
+    <div  ng-controller="myOption1">
+	    <h1>3、</h1>
+		<h2>数据源为对象:</h2>
+		<p>选择车：</p>
+		<select ng-model="selectedCar" ng-options="x for (x,y) in cars"></select>
+		<h3>你选择的是：{{selectedCar.brand}}</h3>
+		<h3>模型：{{selectedCar.model}}</h3>
+		<h3>颜色：{{selectedCar.color}}</h3>
+		<p>注意选中的值是一个对象。</p>
+		<br><br>
+	</div>
+
+
+
+
+
+
+<script>
+ 
+  var app = angular.module("myApp",[]);
+ 
+  //ng-options 指令，选择的值是一个对象
+  app.controller("myCtrl",function($scope){
+      $scope.sites=[
+        {site : "Google", url : "http://www.google.com"},
+        {site : "Runoob", url : "http://www.runoob.com"},
+        {site : "Taobao", url : "http://www.taobao.com"}
+      ]
+  });
+
+
+ //数据源为对象
+  app.controller("myOptionsubject",function($scope) {
+  	 $scope.sites = {
+  	 	site01 : "Google",
+  	 	site02 : "Runoob",
+  	 	site03 : "Taobao"
+  	 }
+  })
+
+ //
+   app.controller("myOption1",function($scope) {
+  	 $scope.cars = {
+  	 	car01 : {brand : "Ford", model : "Mustang", color : "red"},
+        car02 : {brand : "Fiat", model : "500", color : "white"},
+        car03 : {brand : "Volvo", model : "XC90", color : "black"}
+  	 }
+  })
+
+
+
+
+
+
+ 
+</script>		
+</body>
+</html>
